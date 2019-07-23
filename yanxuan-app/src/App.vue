@@ -4,17 +4,13 @@
 		  <router-view></router-view>
 	  </keep-alive>
 	  
-	  <Tabbar></Tabbar>
+	  <tab-bar></tab-bar>
   </div>
 </template>
 
 <script>
-	import Tabbar from './components/common/Tabbar.vue'
-	
 	export default {
-		components:{
-			Tabbar
-		}
+
 	}
 </script>
 

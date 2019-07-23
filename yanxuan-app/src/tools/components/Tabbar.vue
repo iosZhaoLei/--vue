@@ -33,7 +33,7 @@
 		width: 100%;
 		height: 49px;
 		display: flex;
-		
+		background: #fff;
 		.tab-item {
 			flex:1;
 			padding-top: 4px;
