@@ -1,7 +1,7 @@
 <template>
 	<div class="home-menu-wrap">
 		<nav class="home-menu">
-			<li v-for='item in list' :key='item.id'>
+			<li v-for='item in menuList' :key='item.id'>
 				{{item.name}}
 			</li>
 		</nav>
@@ -9,25 +9,18 @@
 </template>
 
 <script>
-import {fetchGet} from '../../api/fetch'
-import api from '../../api'
+
+import {mapState} from 'vuex'
+
 export default {
-	data(){
-		return {
-			list:[]
-		}
+	computed: {
+		...mapState({
+			menuList:state=>state.home.menuList
+		})
 	},
 	created(){
-		fetchGet(api.CATE_LIST_URL).then((data)=>{
-			//如果使用this.list 会有好多废数据（set方法，get方法等）
-			this.list = data.map(item=>{
-				return {
-					id:item.id,
-					name:item.name
-				}
-			})
-			console.log(this.list);
-		})
+		//获取数据
+		this.$store.dispatch('home/getMenuData')
 	}
 }
 </script>

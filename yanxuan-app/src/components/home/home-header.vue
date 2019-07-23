@@ -5,20 +5,22 @@
 		</div>
 		<div class="search-bar">
 			<van-icon name='search'/>
-			搜索商品，共XXX好物
+			搜索商品，共{{total}}好物
 		</div>
 		<div class="login-btn">登录</div>
 	</header>
 </template>
 
 <script>
-import {fetchGet} from '../../api/fetch'
-import api from '../../api'
+import {mapState} from 'vuex'
 export default {
-	created(){
-		fetchGet(api.GOODS_TOTAL_URL).then((data)=>{
-			console.log(data);
+	computed: {
+		...mapState({
+			total:state=>state.home.total
 		})
+	},
+	created(){
+		this.$store.dispatch('home/getGoodTotal');
 	}
 }
 </script>

@@ -21,5 +21,7 @@ module.exports = {
 		//set（路径的别名，真实的路径）
 			.set('@pages',resolve('src/pages'))
 			.set('@components',resolve('src/components'))
+			.set('api',resolve('src/api'))
+			.set('fetch',resolve('src/api/fetch'))
 	}
 }
