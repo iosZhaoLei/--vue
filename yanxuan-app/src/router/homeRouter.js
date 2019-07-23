@@ -1,0 +1,23 @@
+export default {
+	path:'/home',
+	component:()=>import('@pages/home/index'),
+	children:[
+		{
+			alias:'',
+			path:'main',
+			component:()=>import('@components/home/home-main-content')
+		},
+		{
+			path:'menu/:id/:name',
+			component:()=>import('@components/home/home-menu-content'),
+			props:true
+		},
+		{
+			path:'categorylist/:id/:name',
+			components:{
+				'subpage':()=>import('@pages/home/category-list')
+			},
+			props:true
+		}
+	]
+}
