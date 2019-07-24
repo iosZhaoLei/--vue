@@ -22,7 +22,6 @@ const actions = {
     getGoodTotal (context){
         //请求菜单栏的数据
         fetchGet(api.GOODS_TOTAL_URL).then((data)=>{
-            
 			context.commit('setTotal',data);  //调用mutations进行赋值
 		})
     },
