@@ -5,7 +5,8 @@ import api from 'api'
 const state = {
     total:undefined,
     menuList:[{id:-1,label:'推荐'}],
-    bannerlist:[]
+    bannerlist:[],
+    policy:[]
 }
 
 
@@ -18,6 +19,9 @@ const mutations = {
     },
     setBannerData(state,params) {
         state.bannerlist = params;
+    },
+    setPolicyData(state,params){
+        state.policy = params;
     }
 }
 
@@ -44,6 +48,13 @@ const actions = {
         fetchGet(api.HOME_BANNER_LIST_URL).then((data)=>{
             let newdata = data.map(({id,picUrl})=>({id,picUrl}))
             context.commit('setBannerData',newdata);
+        })
+    },
+    //请求网易严选协议
+    getpolicyData(context) {
+        fetchGet(api.POLICY_LIST_URL).then((data)=>{
+            let newdata = data.map(({desc,icon})=>({desc,icon}))
+            context.commit('setPolicyData',newdata);
         })
     }
 }

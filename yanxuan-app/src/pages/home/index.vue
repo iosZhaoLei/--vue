@@ -5,7 +5,7 @@
 			<homeMenu/>
 			
 			<keep-alive>
-				<router-view/>
+				<router-view class="home-content" />
 			</keep-alive>
 		</div>
 		<router-view name='subpage'/>
@@ -31,5 +31,6 @@
 		top: 74px;
 		left: 0;
 		bottom: 0px;
+		overflow: hidden;
 	}
 </style>

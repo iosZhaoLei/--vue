@@ -1,7 +1,62 @@
 <template>
-	<div class="home-content">
-		分类数据的内容
-	</div>
+	<scroller>
+		{{name}}
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+		<h1>sss</h1>
+	</scroller>	
 </template>
 
 <script>
