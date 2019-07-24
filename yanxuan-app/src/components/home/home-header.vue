@@ -5,20 +5,21 @@
 		</div>
 		<div class="search-bar">
 			<van-icon name='search'/>
-			搜索商品，共{{total}}好物
+			<!-- 搜索商品，共{{total}}好物 -->
+			搜索商品，共{{$store.state.home.total}}好物
 		</div>
 		<div class="login-btn">登录</div>
 	</header>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+// import {mapState} from 'vuex'
 export default {
-	computed: {
-		...mapState({
-			total:state=>state.home.total
-		})
-	},
+	// computed: {
+	// 	...mapState({
+	// 		total:state=>state.home.total
+	// 	})
+	// },
 	created(){
 		this.$store.dispatch('home/getGoodTotal');
 	}
