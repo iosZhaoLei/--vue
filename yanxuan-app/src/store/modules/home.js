@@ -39,7 +39,6 @@ const actions = {
         fetchGet(api.CATE_LIST_URL).then((data)=>{
 			//如果使用this.list 会有好多废数据（set方法，get方法等）
             let newdata = data.map(({id,name})=>({id,label:name}));   //处理数据
-            // console.log(newdata);
 			context.commit('setMenuList',newdata);  //调用mutations进行赋值
 		})
     },
@@ -55,6 +54,28 @@ const actions = {
         fetchGet(api.POLICY_LIST_URL).then((data)=>{
             let newdata = data.map(({desc,icon})=>({desc,icon}))
             context.commit('setPolicyData',newdata);
+        })
+    },
+    //请求首页的分类菜单的列表数据
+    getCategoryList(context,id) {
+        fetchGet(api.HOME_CATE_ITEM_LIST_URL,{id}).then((data)=>{
+            let bannerurl = data.currentCategory.bannerUrl;
+            console.log(data);
+            let categoryList = data.categoryItemList.map(({category,itemList})=>{
+                let info = {
+                    title:category.name,
+                    subTitle:category.frontName
+                }
+                let items = itemList.map(item=>{
+                    return {
+                        primaryPicUrl:item.primaryPicUrl,
+                        simpleDesc:item.simpleDesc,
+                        name:item.name,
+                        retailPrice:item.retailPrice,
+                        itemTagList:item.itemTagList.map(({name})=>name)
+                    }
+                })
+            })
         })
     }
 }

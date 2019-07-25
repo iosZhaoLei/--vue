@@ -1,7 +1,7 @@
 <template>
 	<div class="home-menu-wrap">
 		<ly-tab
-		v-if='menuList.length>1'
+			v-if='menuList.length>1'
 			v-model='selectedIndex'
 			:items='menuList'
 			:options='options'>
@@ -52,12 +52,10 @@ export default {
 	},
 	watch: {
 		selectedIndex (newVal){
-			console.log(newVal);
 			if (newVal == 0) {
 				this.$router.push('/home/main')
 			}else {
 				let {id,label} = this.menuList[newVal];
-				console.log(newVal);
 				this.$router.push(`/home/menu/${id}/${label}`)
 			}
 		}

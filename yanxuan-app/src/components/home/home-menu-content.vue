@@ -1,67 +1,25 @@
 <template>
 	<scroller>
 		{{name}}
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
-		<h1>sss</h1>
+
 	</scroller>	
 </template>
 
 <script>
 	export default {
-		props:['id','name']
+		props:['id','name'],
+		watch: {
+			id:{
+				handler(newVal){
+					console.log(1);
+					this.$store.dispatch('home/getCategoryList',newVal);
+				},
+				immediate:true
+			}
+		},
+		created() {
+			
+		},
 	}
 </script>
 
