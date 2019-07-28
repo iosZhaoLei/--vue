@@ -13,7 +13,10 @@ export default {
     mounted() {
         //组件的dom结构 挂载完成
         //创建滚动视图
-        let scroll = new BScroll(this.$refs.wrap);
+        let scroll = new BScroll(this.$refs.wrap,{
+            click:true,
+            tap:true
+        });
 
         //在用户每一次需要滚动前,刷新滚动图，识别滚动视图高度   
         scroll.on('beforeScrollStart',()=>{

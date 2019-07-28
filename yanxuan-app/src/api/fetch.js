@@ -13,7 +13,7 @@ export function fetchGet(url,params = {}) {
             headers: {
     
             },
-            baseURL:'http://localhost:8080'
+            baseURL:'http://localhost:8081'
         }).then(response=>{
             if(response.status == 200 && response.data.status == 0){
                 //后台数据可以使用

@@ -34,7 +34,7 @@ export default {
 	data () {
 		return {
 			isShow:false,
-			selectedIndex: 0,
+			selectedIndex:0,
 			options: {
 				activeColor: '#b4282d'
 				// 可在这里指定labelKey为你数据里文字对应的字段
@@ -58,6 +58,24 @@ export default {
 				let {id,label} = this.menuList[newVal];
 				this.$router.push(`/home/menu/${id}/${label}`)
 			}
+			
+		},
+		//解决刷新时的bug
+		menuList(newVal) {
+			if(!this.$route.params.name) {
+				return;
+			}
+			//menu变化，计算选中得下标
+			let name = this.$route.params.name;
+			this.selectedIndex = this.menuList.findIndex(item=>{
+				return item.label == name;
+			});
+		},
+		//解决点击tabbar首页的bug
+		'$route.path' : function(newVal) {
+			if(newVal == '/home' || newVal == '/home/main'){
+				this.selectedIndex = 0;
+			}
 		}
 	},
 	methods: {
@@ -72,7 +90,7 @@ export default {
 	},
 	created(){
 		//获取数据
-		this.$store.dispatch('home/getMenuData')
+		this.$store.dispatch('home/getMenuData');
 	}
 }
 </script>
@@ -146,7 +164,7 @@ export default {
 <style>
 .ly-tabbar {
 	background-color: rgba(255, 255, 255, 1);
-	border-bottom: none;
+	border-bottom: 1px solid #eeeeee;
 	-webkit-box-shadow:none;
 	box-shadow: none;
 }

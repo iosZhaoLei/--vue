@@ -8,7 +8,11 @@
 				<router-view class="home-content" />
 			</keep-alive>
 		</div>
-		<router-view name='subpage'/>
+
+		<transition enter-active-class='slideInRight' leave-active-class='slideOutRight'>
+			<router-view name='subpage'/>
+		</transition>
+		
 	</div>
 </template>
 
@@ -28,7 +32,7 @@
 	.home-content {
 		width: 100%;
 		position: absolute;
-		top: 74px;
+		top: 71px;
 		left: 0;
 		bottom: 0px;
 		overflow: hidden;

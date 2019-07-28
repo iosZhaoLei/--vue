@@ -13,89 +13,52 @@
 			</li>
 		</ul>
 
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
-		<h1>111</h1>
+		<div class="icon-list">
+			<div class="icon" v-for="item in iconlist" :key="item.text" @click="getCateListPage(item.text)">
+				<!-- <a href=""> -->
+					<img :src="item.picUrl" alt="">
+					<p>{{item.text}}</p>
+				<!-- </a> -->
+			</div>
+		</div>
+
+
+		<template v-for="cateData in topcatelist">
+			<top-cate-view :key="cateData.titlePicUrl" :data = 'cateData'>
+
+			</top-cate-view>
+		</template>
 	</scroller>
 </template>
 
 <script>
 import {mapState} from 'vuex'
-import {Swipe,SwipeItem} from 'vant'
+import {Swipe,SwipeItem, ContactList} from 'vant'
+import TopCateView from './home-top-cate-view'
 
 export default {
 	components:{
 		[Swipe.name]:Swipe,
 		[SwipeItem.name]:SwipeItem,
+		[TopCateView.name]:TopCateView
 	},
 	computed: {
 		...mapState({
 			bannerlist:state=>state.home.bannerlist,
-			policy:state=>state.home.policy
+			policy:state=>state.home.policy,
+			iconlist:state=>state.home.iconList,
+			topcatelist:state=>state.home.topcatelist,
+			menuList:state=>state.home.menuList
 		})
+	},
+	methods: {
+		getCateListPage(text) {
+			let {id,label} = this.menuList.find((item)=>{
+				return item.label == text;
+			})
+			console.log(id,label);
+			this.$router.push(`/home/categorylist/${id}/${label}`)
+		}
 	},
 	created(){
 		//请求推荐界面的数据
@@ -104,6 +67,12 @@ export default {
 		
 		//请求网易严选的协议接口
 		this.$store.dispatch('home/getpolicyData');
+		
+		//请求icon列表数据
+		this.$store.dispatch('home/getIconListData');
+
+		//请求推荐底部列表数据
+		this.$store.dispatch('home/getTopCateList');
 	}
 }
 </script>
@@ -127,6 +96,22 @@ export default {
 				color:#b4282d;	
 				line-height: 14px;
 				float: left;
+			}
+		}
+	}
+	.icon-list {
+		.icon {
+			float: left;
+			width: 20%;
+			img {
+				width: 80%;
+				display: block;
+				margin: 0 auto;
+			}
+			p {
+				font-size: 12px;
+				line-height: 20px;
+				text-align: center;
 			}
 		}
 	}

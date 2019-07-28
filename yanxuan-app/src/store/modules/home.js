@@ -6,7 +6,11 @@ const state = {
     total:undefined,
     menuList:[{id:-1,label:'推荐'}],
     bannerlist:[],
-    policy:[]
+    policy:[],
+    categoryBanner:'',
+    categoryList:[],
+    iconList:[],
+    topcatelist:[]
 }
 
 
@@ -22,6 +26,16 @@ const mutations = {
     },
     setPolicyData(state,params){
         state.policy = params;
+    },
+    setCategoryData(state,params) {
+        state.categoryBanner = params.bannerurl;
+        state.categoryList = params.categoryList;
+    },
+    setIconListData(state,params){
+        state.iconList = params;
+    },
+    setTopCateList(state,params){
+        state.topcatelist = params
     }
 }
 
@@ -59,15 +73,19 @@ const actions = {
     //请求首页的分类菜单的列表数据
     getCategoryList(context,id) {
         fetchGet(api.HOME_CATE_ITEM_LIST_URL,{id}).then((data)=>{
+            
             let bannerurl = data.currentCategory.bannerUrl;
-            console.log(data);
+            
             let categoryList = data.categoryItemList.map(({category,itemList})=>{
+                
                 let info = {
                     title:category.name,
                     subTitle:category.frontName
                 }
+                
                 let items = itemList.map(item=>{
                     return {
+                        id:item.id,
                         primaryPicUrl:item.primaryPicUrl,
                         simpleDesc:item.simpleDesc,
                         name:item.name,
@@ -75,7 +93,41 @@ const actions = {
                         itemTagList:item.itemTagList.map(({name})=>name)
                     }
                 })
+                return {
+                    info,
+                    items
+                }
             })
+            //提交数据
+            context.commit('setCategoryData',{
+                bannerurl,
+                categoryList
+            });
+
+
+        })
+    },
+
+    //请求icon列表数据
+    getIconListData(context) {
+        fetchGet(api.HOME_CATE_LIST_URL).then(data=>{
+            let newdata = data.kingKongList.map(({text,picUrl})=>({text,picUrl}))
+            context.commit('setIconListData',newdata)
+        })
+    },
+    getTopCateList(context) {
+        fetchGet(api.HOME_TOP_CATELIST_URL).then(data=>{
+            let newdata = data.map(itemData=>{
+                let itemList = itemData.itemList.map(({id,name,listPicUrl,retailPrice,counterPrice,promTag})=>
+                    ({id,name,listPicUrl,retailPrice,counterPrice,promTag})
+                )
+                return {
+                    titlePicUrl : itemData.titlePicUrl,
+                    itemList
+                }
+            })
+
+            context.commit('setTopCateList',newdata);
         })
     }
 }
