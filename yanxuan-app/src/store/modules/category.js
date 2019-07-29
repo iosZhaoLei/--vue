@@ -18,9 +18,8 @@ const mutations = {
         state.selectMenuId = params;
     },
     setcateMenuList(state,params) {
-        state.menuList = params;
-        console.log(state.selectMenuId);
         console.log(params);
+        state.menuList = params;
     }
 }
 
@@ -28,6 +27,7 @@ const actions = {
     //请求侧边栏分类数据
     getCateMenuData(context) {
         fetchGet(api.CATEGOEY_LIST_URL).then(data=>{
+            console.log(data);
             let newdata = data.map(({id,name})=>({id,name}));
             context.commit('setCategoryData',newdata)
         })

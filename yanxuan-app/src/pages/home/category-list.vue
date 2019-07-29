@@ -21,8 +21,7 @@ import menuContent from '@components/home/home-menu-content'
 			}
 		},
 		created() {
-			console.log(this.id)
-			console.log(this.name)
+			
 		}
 	}
 	

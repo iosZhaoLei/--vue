@@ -56,7 +56,6 @@ export default {
 			let {id,label} = this.menuList.find((item)=>{
 				return item.label == text;
 			})
-			console.log(id,label);
 			this.$router.push(`/home/categorylist/${id}/${label}`)
 		}
 	},

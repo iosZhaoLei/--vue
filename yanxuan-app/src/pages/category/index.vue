@@ -45,7 +45,7 @@ export default {
     }
     .category-menu-list {
         flex: 1;
-        background: yellow;
+        overflow: hidden;
     }
 }
 
