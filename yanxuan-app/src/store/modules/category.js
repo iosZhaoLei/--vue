@@ -4,7 +4,8 @@ import {fetchGet} from 'fetch'
 
 const state = {
     categorydata:[],
-    selectMenuId:null
+    selectMenuId:null,
+    menuList:[]
 }
 
 const mutations = {
@@ -15,6 +16,11 @@ const mutations = {
     setMenuId(state,params) {
         //分类页面侧边栏的点击事件触发的
         state.selectMenuId = params;
+    },
+    setcateMenuList(state,params) {
+        state.menuList = params;
+        console.log(state.selectMenuId);
+        console.log(params);
     }
 }
 
@@ -25,7 +31,6 @@ const actions = {
             let newdata = data.map(({id,name})=>({id,name}));
             context.commit('setCategoryData',newdata)
         })
-        
     },
     getCategoryMenuList(context,id) {
         fetchGet(api.CATEGOEY_LIST_GROUP_URL,{
@@ -33,7 +38,18 @@ const actions = {
         }).then(data=>{
             // let newdata = data.map(({id,name})=>({id,name}));
             // context.commit('setCategoryData',newdata)
-            console.log(data);
+            let bannerUrl = data.currentCategory.wapBannerUrl;
+            let categoryGroupList = data.categoryGroupList.map(group=>{
+                return {
+                    id:group.id,
+                    name:group.name,
+                    categoryList:group.categoryList.map(({id,name,wapBannerUrl})=>({id,name,bannerUrl:wapBannerUrl}))
+                }
+            })
+            context.commit('setcateMenuList',{
+                bannerUrl,
+                categoryGroupList
+            });
         })
     }
 }

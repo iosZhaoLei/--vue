@@ -40,7 +40,7 @@ export default {
 <style lang="scss" scoped>
 .category-item {
     padding: 10px 0;
-    span { 
+    span {
         display: block;
         font-size: 14px;
         color: #333;
