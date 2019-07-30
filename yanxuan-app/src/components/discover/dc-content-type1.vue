@@ -1,6 +1,6 @@
 <template>
 <div>
-    推荐
+    推荐123
 </div>
 </template>
 
