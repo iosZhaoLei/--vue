@@ -104,7 +104,6 @@ const actions = {
                 bannerurl,
                 categoryList
             });
-            console.log(data);
         })
     },
 

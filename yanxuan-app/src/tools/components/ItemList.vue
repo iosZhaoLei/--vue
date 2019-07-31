@@ -1,6 +1,6 @@
 <template>
     <ul class="item-list">
-        <li class="item" v-for="item in list" :key="item.id">
+        <li class="item" v-for="item in list" :key="item.id" @click="goDetailAciton(item)">
             <!-- <img :src="item.primaryPicUrl" alt=""> -->
             <img v-lazy="item.primaryPicUrl">
             <p class="desc">{{item.simpleDesc}}</p>
@@ -21,6 +21,12 @@ export default {
     name:'item-list',
     props:{
         list:Array
+    },
+    methods: {
+        goDetailAciton(item){
+            console.log(item)
+            this.$router.push(`/itemdetail/${item.id}/${item.name}`)
+        }
     }
 }
 </script>

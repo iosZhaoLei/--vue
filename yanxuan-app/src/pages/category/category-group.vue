@@ -8,7 +8,7 @@
 			:options='options'>
 	</ly-tab>
 
-    <scroller class="group-content">
+    <scroller class="group-content" ref="scroller">
         <item-list :list='groupData'/>
     </scroller>
 </div>
@@ -48,7 +48,12 @@ export default {
     },
     watch:{
         selectIndex(newVal){
-
+            let newid = this.menu[newVal].id;
+            this.$store.dispatch('category/getCateGroupItems',{
+                categoryId:this.cateId,
+                subCategoryId:newid
+            });
+            this.$refs.scroller.scrollTo(0,0)
         }
     },
     data (){
