@@ -1,5 +1,5 @@
 <template>
-<div class="page">
+<div class="page subpage" id="group">
     <app-header :title="name"/>
 
     <ly-tab
@@ -8,9 +8,9 @@
 			:options='options'>
 	</ly-tab>
 
-    <item-list/>
-
-    <!-- {{menu}} -->
+    <scroller class="group-content">
+        <item-list :list='groupData'/>
+    </scroller>
 </div>
 </template>
 
@@ -24,25 +24,31 @@ export default {
     },
     computed:{
         ...mapGetters({
-            name:'category/selectMenuTitle'
+            name:'category/selectMenuTitle',
+            cateId:'category/selectMenuId'
         }),
         ...mapState({
-            cateMenuList:state=>state.category.menuList
+            cateMenuList:state=>state.category.menuList,
+            groupData:state=>state.category.groupData
         }),
         //根据cateMenuList,计算头部tab的数据
         menu(){
-            // let categoryGroupList = this.cateMenuList.categoryGroupList;
             let {categoryGroupList} = this.cateMenuList;
-            console.log(this.cateMenuList)
+            
             if(!categoryGroupList) {
                 return [];
             }
             let newdata = [];
             categoryGroupList.map(({categoryList})=>{
-                let arr = categoryList.map(({name})=>({label:name}))
+                let arr = categoryList.map(({name,id})=>({label:name,id}))
                 newdata = [...newdata,...arr];
             })
             return newdata;
+        }
+    },
+    watch:{
+        selectIndex(newVal){
+
         }
     },
     data (){
@@ -53,10 +59,35 @@ export default {
 				// 可在这里指定labelKey为你数据里文字对应的字段
 			},
         }
+    },
+    created(){
+        this.$store.dispatch('category/getCateGroupItems',{
+            categoryId:this.cateId,
+            subCategoryId:this.id
+        });
+
+        //计算那个tab选中
+        this.selectIndex = this.menu.findIndex(({id})=>{
+            return id == this.id;
+        })
     }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.group-content {
+    width: 100%;
+    top:70px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+}
+</style>
 
+
+<style>
+#group .ly-tab-list {
+	padding: 7px 10px 7px 10px;
+}
 </style>

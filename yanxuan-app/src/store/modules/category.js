@@ -5,7 +5,8 @@ import {fetchGet} from 'fetch'
 const state = {
     categorydata:[],
     selectMenuIndex:0,
-    menuList:[]
+    menuList:[],
+    groupData:[]
 }
 
 const getters = {
@@ -39,6 +40,9 @@ const mutations = {
     },
     setcateMenuList(state,params) {
         state.menuList = params;
+    },
+    setCateGroupItems(state,params) {
+        state.groupData = params;
     }
 }
 
@@ -68,6 +72,22 @@ const actions = {
                 bannerUrl,
                 categoryGroupList
             });
+        })
+    },
+    getCateGroupItems(context,params) {
+        fetchGet(api.CATEGOEY_LIST_GROUP_ITEM_URL,params).then(data=>{
+            let items = data.itemList.map(item=>{
+                return {
+                    id:item.id,
+                    primaryPicUrl:item.primaryPicUrl,
+                    simpleDesc:item.simpleDesc,
+                    name:item.name,
+                    retailPrice:item.retailPrice,
+                    itemTagList:item.itemTagList.map(({name})=>name),
+                    counterPrice:item.counterPrice
+                }
+            })
+            context.commit('setCateGroupItems',items)
         })
     }
 }

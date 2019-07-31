@@ -90,7 +90,8 @@ const actions = {
                         simpleDesc:item.simpleDesc,
                         name:item.name,
                         retailPrice:item.retailPrice,
-                        itemTagList:item.itemTagList.map(({name})=>name)
+                        itemTagList:item.itemTagList.map(({name})=>name),
+                        counterPrice:item.counterPrice
                     }
                 })
                 return {
@@ -103,8 +104,7 @@ const actions = {
                 bannerurl,
                 categoryList
             });
-
-
+            console.log(data);
         })
     },
 
