@@ -29,7 +29,7 @@ import {mapState} from 'vuex'
 			id:{
 				//每一次id变化 重新请求分类列表数据
 				handler(newVal){
-					this.$store.dispatch('home/getCategoryList',newVal);
+					newVal && this.$store.dispatch('home/getCategoryList',newVal);
 				},
 				//自己执行一次
 				immediate:true

@@ -4,7 +4,8 @@
     <div class="group" v-for="group in cateMenuList.categoryGroupList" :key="group.id">
         <h3 class="group-title" v-if="group.name">{{group.name}}</h3>
         <ul class="group-list">
-            <li class="group-item" v-for="item in group.categoryList" :key="item.id">
+            <li class="group-item" v-for="(item) in group.categoryList" :key="item.id"
+             @click="goCategoryGroup(item)">
                 <img :src="item.bannerUrl" alt="">
                 <p>{{item.name}}</p>
             </li>
@@ -14,13 +15,20 @@
 </template>
 
 <script>
-import{mapState} from 'vuex'
+import{mapState,mapGetters} from 'vuex'
 export default {
     computed: {
         ...mapState({
-            menuId:state=>state.category.selectMenuId,
             cateMenuList:state=>state.category.menuList
+        }),
+        ...mapGetters({
+            menuId:'category/selectMenuId'
         })
+    },
+    methods:{
+        goCategoryGroup(item) {
+            this.$router.push(`/category/group/${item.id}`);
+        }
     },
     watch: {
         menuId(){
@@ -55,12 +63,22 @@ export default {
             overflow: hidden;
             padding: 10px 0;
             .group-item {
+                height: 115px;
                 width: 33.33%;
+                // height: 100%;
                 float: left;
                 img {
                     width: 90%;
                     margin: 0 auto;
                     display:  block;
+                }
+                p {
+                    width: 80%;
+                    font-size: 12px;
+                    text-align: center;
+                    line-height: 16px;
+                    margin: 0 auto;
+                    margin-top: 5px;
                 }
             }
         }

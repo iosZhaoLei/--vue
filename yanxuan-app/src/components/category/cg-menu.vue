@@ -14,21 +14,16 @@
 <script>
 import {mapState} from 'vuex'
 export default {
-    data() {
-        return {
-            selectIndex:0
-        }
-    },
     computed: {
         ...mapState({
+            selectIndex:state=>state.category.selectMenuIndex,
             categorydata : state=>state.category.categorydata
         })
     },
     methods: {
         selectMenu(index){
-            this.selectIndex = index;   //修改选中的样式
             //修改id
-            this.$store.commit('category/setMenuId',this.categorydata[index].id);
+            this.$store.commit('category/setMenuIndex',index);
         }
     },
     created() {

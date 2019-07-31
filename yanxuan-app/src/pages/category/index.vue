@@ -12,7 +12,9 @@
             </div>
         </div>
 
-        <router-view name='subpage'/>
+        <transition enter-active-class='slideInRight' leave-active-class='slideOutRight'>
+			<router-view/>
+		</transition>
     </div>
 </template>
 
