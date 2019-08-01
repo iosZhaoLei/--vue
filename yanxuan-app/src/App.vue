@@ -3,7 +3,7 @@
 	  <keep-alive>
 		  <router-view></router-view>
 	  </keep-alive>
-	  
+	  <router-view name='detail'></router-view>
 	  <tab-bar></tab-bar>
   </div>
 </template>

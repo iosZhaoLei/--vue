@@ -24,6 +24,7 @@ export default {
     },
     methods: {
         goDetailAciton(item){
+            console.log('111')
             console.log(item)
             this.$router.push(`/itemdetail/${item.id}/${item.name}`)
         }

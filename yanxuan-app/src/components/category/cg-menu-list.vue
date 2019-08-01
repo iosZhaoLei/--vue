@@ -31,13 +31,13 @@ export default {
         }
     },
     watch: {
-        menuId(){
+        menuId(newVal){
             //请求数据
-            this.$store.commit('category/setcateMenuList',{});
+            // this.$store.commit('category/setcateMenuList',{});
             this.$store.dispatch('category/getCategoryMenuList',this.menuId).then(()=>{
                 //滚动视图滚动到最顶部
                 let scroll = this.$refs.scroll;
-                scroll.scrollTo(0, 0);
+                newVal && scroll.scrollTo(0, 0.01);
             });
             
         }

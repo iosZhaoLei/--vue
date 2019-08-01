@@ -13,7 +13,7 @@ export function fetchGet(url,params = {}) {
             headers: {
     
             },
-            baseURL:'http://localhost:8080'
+            // baseURL:'http://localhost:8080'
         }).then(response=>{
             if(response.status == 200 && response.data.status == 0){
                 //后台数据可以使用
@@ -32,7 +32,7 @@ export function fetchGet(url,params = {}) {
     })
 }
 
-function fetchPost(url,params={}) {
+export function fetchPost(url,params={}) {
     return new Promise((resolve,reject) => {
         axios.post(url,params).then(response=>{
             if(response.status == 200 && response.data.status == 0){

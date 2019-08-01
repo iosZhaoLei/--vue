@@ -6,6 +6,7 @@ import categoRouter from './categoryRouter'
 import discoverRouter from './discoverRouter'
 import cartRouter from './cartRouter'
 import mineRouter from './mineRouter'
+import goodRoute from './goodRoute'
 
 Vue.use(Router)
 
@@ -18,11 +19,10 @@ export default new Router({
 	discoverRouter,
 	cartRouter,
 	mineRouter,
-	//商品详情数据
+	goodRoute,
 	{
-		path:'/itemdetail/:id/:name',
-		component:()=>import('@pages/common/goods-detail'),
-		props:true
+		path:'/login',
+		component:()=>import('@pages/common/login')
 	},
 	//重定向
 	{

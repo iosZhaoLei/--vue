@@ -31,3 +31,7 @@ html,body,#app {
 	color: #333;
 	font-size: 12px
 }
+
+.van-toast {
+	z-index: 4000!important;
+}
