@@ -33,6 +33,7 @@ export function fetchGet(url,params = {}) {
 }
 
 export function fetchPost(url,params={}) {
+    console.log(params)
     return new Promise((resolve,reject) => {
         axios.post(url,params).then(response=>{
             if(response.status == 200 && response.data.status == 0){
@@ -43,7 +44,8 @@ export function fetchPost(url,params={}) {
                 Toast({
                     message:'请求错误',
                     duration:1000
-                });                
+                });
+                console.log(response)
             }
         }).catch(error=>{
             Toast('请求失败');

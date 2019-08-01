@@ -90,4 +90,4 @@ module.exports.REGIESTER_URL = '/api/user/regiester';
 //登录接口
 //method:post
 //参数:username,password
-module.exports.LOGIN_URL = '/api/login';
+// module.exports.LOGIN_URL = '/api/login';
