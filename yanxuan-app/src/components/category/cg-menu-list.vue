@@ -25,10 +25,13 @@ export default {
     watch: {
         menuId(){
             //请求数据
-            this.$store.dispatch('category/getCategoryMenuList',this.menuId);
-            //滚动视图滚动到最顶部
-            let scroll = this.$refs.scroll;
-            scroll.scrollTo(0, 0);
+            this.$store.commit('category/setcateMenuList',{});
+            this.$store.dispatch('category/getCategoryMenuList',this.menuId).then(()=>{
+                //滚动视图滚动到最顶部
+                let scroll = this.$refs.scroll;
+                scroll.scrollTo(0, 0);
+            });
+            
         }
     },
     created() {
