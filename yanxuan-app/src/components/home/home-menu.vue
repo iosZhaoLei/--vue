@@ -162,18 +162,8 @@ export default {
 </style>
 
 <style>
-.ly-tabbar {
-	background-color: rgba(255, 255, 255, 1);
-	border-bottom: 1px solid #eeeeee;
-	-webkit-box-shadow:none;
-	box-shadow: none;
-}
-.ly-tab-list {
+.home-menu-wrap .ly-tab-list {
 	padding: 7px 60px 7px 10px;
-}
-.ly-tab-list a {
-	color: #333;
-	font-size: 12px
 }
 .van-overlay {
 	top:44px;
