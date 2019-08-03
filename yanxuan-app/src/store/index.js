@@ -16,10 +16,10 @@ const state = {
 }
 
 export default new Vuex.Store({
+  state,
+  mutations,
+  actions,
   modules:{
-    state,
-    mutations,
-    actions,
     home,
     category,
     discover
